@@ -1,0 +1,48 @@
+.awareness-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.awareness-btn {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #f1f3f5;
+  color: #1f2937;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.awareness-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.awareness-btn.on {
+  background-color: #dcfce7;
+  color: #14532d;
+}
+
+.awareness-btn.on:hover {
+  background-color: #bbf7d0;
+}
+
+/* End Session button */
+.awareness-stop-btn {
+  width: 100%;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: #fee2e2;
+  color: #b91c1c;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.awareness-stop-btn:hover {
+  background-color: #fca5a5;
+}
