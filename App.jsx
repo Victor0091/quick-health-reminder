@@ -6,7 +6,7 @@ import Progress from "./src/components/Progress/Progress";
 import AwarenessToggle from "./src/components/Awareness/AwarenessToggle";
 import { TASKS } from "./src/data/tasks";
 
-const REMINDER_INTERVAL =30;
+const REMINDER_INTERVAL =0.1;
 
 export default function App() {
  
@@ -20,6 +20,7 @@ export default function App() {
   });
   const [screenMinutes, setScreenMinutes] = useState(0);
   const [awarenessActive, setAwarenessActive] = useState(false);
+  const [timerEnded, setTimerEnded] = useState(false);
   
   
   const [darkMode, setDarkMode] = useState(() => {
@@ -64,12 +65,20 @@ export default function App() {
   const remainingMinutes =
     screenMinutes === 0
       ? REMINDER_INTERVAL
-      : REMINDER_INTERVAL - (screenMinutes % REMINDER_INTERVAL);
+      : Math.round((REMINDER_INTERVAL - (screenMinutes % REMINDER_INTERVAL)) * 100) / 100;
+
+  // Show remainder when timer ends
+  useEffect(() => {
+    if (awarenessActive && remainingMinutes === 0 && screenMinutes > 0) {
+      setTimerEnded(true);
+    }
+  }, [remainingMinutes, awarenessActive, screenMinutes]);
 
  
   const handleStop = () => {
     setAwarenessActive(false);
     setScreenMinutes(0);
+    setTimerEnded(false);
     setCompleted([]); 
   };
 
@@ -91,7 +100,7 @@ export default function App() {
 
       {}
       <ScreenAlert
-        show={awarenessActive && screenMinutes > 0 && remainingMinutes === 0}
+        show={timerEnded}
       />
 
       {}

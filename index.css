@@ -63,20 +63,16 @@ button:disabled {
   font-size: 13px;
   color: #9ca3af;
 }
-
-/* Dark theme overrides */
 .app.dark {
   background: #121212;
   color: #f5f5f5;
 }
-
 .app.dark h1,
 .app.dark h2,
 .app.dark h3,
 .app.dark p {
   color: #e6eef8;
 }
-
 .app.dark .task-item {
   background-color: #071025;
   box-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -100,7 +96,7 @@ button:disabled {
   background-color: #60a5fa;
 }
 
-/* Theme toggle button */
+
 .theme-toggle {
   padding: 8px 12px;
   border-radius: 999px;
