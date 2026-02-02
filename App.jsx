@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Header from "./components/Header/Header";
-import ScreenAlert from "./components/Alert/ScreenAlert";
-import TaskList from "./components/Tasks/TaskList";
-import Progress from "./components/Progress/Progress";
-import AwarenessToggle from "./components/Awareness/AwarenessToggle";
-import { TASKS } from "./data/tasks";
+import Header from "./src/components/Header/Header";
+import ScreenAlert from "./src/components/Alert/ScreenAlert";
+import TaskList from "./src/components/Tasks/TaskList";
+import Progress from "./src/components/Progress/Progress";
+import AwarenessToggle from "./src/components/Awareness/AwarenessToggle";
+import { TASKS } from "./src/data/tasks";
 
 const REMINDER_INTERVAL =30;
 
@@ -58,6 +58,7 @@ export default function App() {
         tasks={TASKS}
         completed={completed}
         onComplete={handleComplete}
+        awarenessActive={awarenessActive}
       />
 
       
