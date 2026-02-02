@@ -12,12 +12,15 @@ body {
 }
 
 .app {
+  background: #f5f5f5;
+  color: #222;
+  min-height: 100vh;
+  padding: 20px;
   max-width: 900px;
   margin: 0 auto;
-  padding: 24px 20px 40px;
 }
 
-/* Typography */
+
 h1 {
   font-size: 26px;
   font-weight: 600;
@@ -59,4 +62,53 @@ button:disabled {
   margin-top: 28px;
   font-size: 13px;
   color: #9ca3af;
+}
+
+/* Dark theme overrides */
+.app.dark {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+.app.dark h1,
+.app.dark h2,
+.app.dark h3,
+.app.dark p {
+  color: #e6eef8;
+}
+
+.app.dark .task-item {
+  background-color: #071025;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.app.dark .task-item.completed {
+  background-color: #0f1724;
+  opacity: 0.8;
+}
+
+.app.dark .task-item button {
+  background-color: #059669;
+  color: #e6eef8;
+}
+
+.app.dark .progress-bar-bg {
+  background-color: #0f1724;
+}
+
+.app.dark .progress-bar-fill {
+  background-color: #60a5fa;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background-color: #111827;
+  color: #e6eef8;
+  border: 1px solid rgba(255,255,255,0.06);
+  font-weight: 600;
+}
+.theme-toggle:hover {
+  filter: brightness(1.05);
 }

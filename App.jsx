@@ -9,11 +9,35 @@ import { TASKS } from "./src/data/tasks";
 const REMINDER_INTERVAL =30;
 
 export default function App() {
-  const [completed, setCompleted] = useState([]);
+ 
+  const [completed, setCompleted] = useState(() => {
+    try {
+      const saved = localStorage.getItem("tasks");
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return [];
+    }
+  });
   const [screenMinutes, setScreenMinutes] = useState(0);
   const [awarenessActive, setAwarenessActive] = useState(false);
-
   
+  
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      return localStorage.getItem("theme") === "dark";
+    } catch (e) {
+      return false;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("theme", darkMode ? "dark" : "light");
+    } catch (e) {
+      
+    }
+  }, [darkMode]);
+
   useEffect(() => {
     if (!awarenessActive) return;
 
@@ -24,6 +48,11 @@ export default function App() {
     return () => clearInterval(interval);
   }, [awarenessActive]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem("tasks", JSON.stringify(completed));
+    } catch (e) {}
+  }, [completed]);
 
   const handleComplete = (id) => {
     if (!completed.includes(id)) {
@@ -41,12 +70,24 @@ export default function App() {
   const handleStop = () => {
     setAwarenessActive(false);
     setScreenMinutes(0);
+    setCompleted([]); 
   };
 
   return (
-    <div className="app">
+    <div className={darkMode ? "app dark" : "app"}>
       {}
       <Header awarenessActive={awarenessActive} />
+
+      {}
+      <div style={{ marginTop: 12, marginBottom: 8 }}>
+        <button
+          className="theme-toggle"
+          onClick={() => setDarkMode((d) => !d)}
+          aria-pressed={darkMode}
+        >
+          {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+        </button>
+      </div>
 
       {}
       <ScreenAlert

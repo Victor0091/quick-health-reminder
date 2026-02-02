@@ -64,7 +64,7 @@ npm run dev
 
 ---
 
-## Project Structure 📁
+## Project Structure 
 
 ```
 src/
@@ -83,7 +83,7 @@ src/
 
 ---
 
-## How It Works 🔄
+# How It Works 
 
 1. **Start Wellness Awareness** – Click "Start Wellness Awareness" button to begin tracking
 2. **Track Screen Time** – The app monitors active screen presence in 1-minute intervals
@@ -94,7 +94,7 @@ src/
 
 ---
 
-## Features Breakdown 🎨
+## Features Breakdown 
 
 ### Header Component
 - Displays app title and tagline: "Stay active. Stay hydrated. Stay well."
@@ -121,7 +121,7 @@ src/
 
 ---
 
-## Customization 🎨
+## Customization 
 
 ### Modify Task List
 Edit `src/data/tasks.js` to add or modify wellness tasks. Each task should include:
@@ -133,7 +133,7 @@ Edit `src/data/tasks.js` to add or modify wellness tasks. Each task should inclu
 ### Change Reminder Interval
 In `App.jsx`, modify the `REMINDER_INTERVAL` constant:
 ```javascript
-const REMINDER_INTERVAL = 30; // Change to desired minutes
+const REMINDER_INTERVAL = 30; 
 ```
 
 ### Styling
@@ -141,7 +141,7 @@ Global styles are in `index.css`. Component-specific styles are in individual `.
 
 ---
 
-## Browser Support 🌐
+## Browser Support 
 
 - Chrome (latest)
 - Firefox (latest)
@@ -150,7 +150,7 @@ Global styles are in `index.css`. Component-specific styles are in individual `.
 
 ---
 
-## Contributing 🤝
+## Contributing 
 
 Contributions are welcome! Feel free to:
 - Report bugs
@@ -160,13 +160,13 @@ Contributions are welcome! Feel free to:
 
 ---
 
-## License 📄
+## License 
 
 This project is open source and available under the MIT License.
 
 ---
 
-## Future Enhancements 🚀
+## Future Enhancements 
 
 - [ ] Local storage persistence for task completion history
 - [ ] Customizable wellness tasks per user
@@ -179,8 +179,8 @@ This project is open source and available under the MIT License.
 
 ---
 
-## Support 💬
+## Support 
 
 For questions or issues, please create an issue on the GitHub repository.
 
-**Stay healthy! 💚**
+**Stay healthy!**
