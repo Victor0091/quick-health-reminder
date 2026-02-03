@@ -4,7 +4,9 @@ import ScreenAlert from "./src/components/Alert/ScreenAlert";
 import TaskList from "./src/components/Tasks/TaskList";
 import Progress from "./src/components/Progress/Progress";
 import AwarenessToggle from "./src/components/Awareness/AwarenessToggle";
+import Modal from "./src/components/Modal/Modal";
 import { TASKS } from "./src/data/tasks";
+import { playNotificationSound, playCompleteSound } from "./src/sound/sound";
 
 const REMINDER_INTERVAL =0.1;
 
@@ -21,6 +23,13 @@ export default function App() {
   const [screenMinutes, setScreenMinutes] = useState(0);
   const [awarenessActive, setAwarenessActive] = useState(false);
   const [timerEnded, setTimerEnded] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    try {
+      return localStorage.getItem("soundEnabled") !== "false";
+    } catch (e) {
+      return true;
+    }
+  });
   
   
   const [darkMode, setDarkMode] = useState(() => {
@@ -38,6 +47,13 @@ export default function App() {
       
     }
   }, [darkMode]);
+
+  // Persist sound preference
+  useEffect(() => {
+    try {
+      localStorage.setItem("soundEnabled", soundEnabled);
+    } catch (e) {}
+  }, [soundEnabled]);
 
   useEffect(() => {
     if (!awarenessActive) return;
@@ -58,6 +74,9 @@ export default function App() {
   const handleComplete = (id) => {
     if (!completed.includes(id)) {
       setCompleted((prev) => [...prev, id]);
+      if (soundEnabled) {
+        playCompleteSound();
+      }
     }
   };
 
@@ -71,8 +90,11 @@ export default function App() {
   useEffect(() => {
     if (awarenessActive && remainingMinutes === 0 && screenMinutes > 0) {
       setTimerEnded(true);
+      if (soundEnabled) {
+        playNotificationSound();
+      }
     }
-  }, [remainingMinutes, awarenessActive, screenMinutes]);
+  }, [remainingMinutes, awarenessActive, screenMinutes, soundEnabled]);
 
  
   const handleStop = () => {
@@ -95,6 +117,16 @@ export default function App() {
           aria-pressed={darkMode}
         >
           {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+        </button>
+
+        {/* Sound toggle */}
+        <button
+          className="theme-toggle"
+          onClick={() => setSoundEnabled((s) => !s)}
+          aria-pressed={soundEnabled}
+          style={{ marginLeft: 8 }}
+        >
+          {soundEnabled ? "🔊 Sound On" : "🔇 Sound Off"}
         </button>
       </div>
 
@@ -119,6 +151,14 @@ export default function App() {
         active={awarenessActive}
         onToggle={setAwarenessActive}
         onStop={handleStop}
+      />
+
+      {/* Timer ended modal */}
+      <Modal
+        show={timerEnded}
+        onClose={() => setTimerEnded(false)}
+        title="⏰ Wellness Break Time!"
+        message="You've been on screen for 30 minutes. Time to take a wellness break! Complete the tasks below or end your session."
       />
 
       {}
