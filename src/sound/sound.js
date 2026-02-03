@@ -1,5 +1,5 @@
 
-export const playNotificationSound = () => {
+export const NotificationSound = () => {
   try {
     
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -36,7 +36,7 @@ export const playCompleteSound = () => {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const now = audioContext.currentTime;
     
-    // Success chime
+   
     const notes = [
       { freq: 523.25, time: 0, duration: 0.1 },
       { freq: 659.25, time: 0.12, duration: 0.1 },

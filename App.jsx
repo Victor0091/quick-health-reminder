@@ -6,7 +6,7 @@ import Progress from "./src/components/Progress/Progress";
 import AwarenessToggle from "./src/components/Awareness/AwarenessToggle";
 import Modal from "./src/components/Modal/Modal";
 import { TASKS } from "./src/data/tasks";
-import { playNotificationSound, playCompleteSound } from "./src/sound/sound";
+import {playCompleteSound } from "./src/sound/sound";
 
 const REMINDER_INTERVAL =0.1;
 
