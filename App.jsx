@@ -6,9 +6,9 @@ import Progress from "./src/components/Progress/Progress";
 import AwarenessToggle from "./src/components/Awareness/AwarenessToggle";
 import Modal from "./src/components/Modal/Modal";
 import { TASKS } from "./src/data/tasks";
-import {playCompleteSound } from "./src/sound/sound";
+import { playNotificationSound, playCompleteSound } from "./src/sound/sound";
 
-const REMINDER_INTERVAL =0.1;
+const REMINDER_INTERVAL =30;
 
 export default function App() {
  
@@ -48,7 +48,7 @@ export default function App() {
     }
   }, [darkMode]);
 
-  // Persist sound preference
+  
   useEffect(() => {
     try {
       localStorage.setItem("soundEnabled", soundEnabled);
@@ -86,7 +86,7 @@ export default function App() {
       ? REMINDER_INTERVAL
       : Math.round((REMINDER_INTERVAL - (screenMinutes % REMINDER_INTERVAL)) * 100) / 100;
 
-  // Show remainder when timer ends
+ 
   useEffect(() => {
     if (awarenessActive && remainingMinutes === 0 && screenMinutes > 0) {
       setTimerEnded(true);
@@ -153,7 +153,7 @@ export default function App() {
         onStop={handleStop}
       />
 
-      {/* Timer ended modal */}
+      {}
       <Modal
         show={timerEnded}
         onClose={() => setTimerEnded(false)}
